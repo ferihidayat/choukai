@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Furigana di atas Karakter Kanji</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://unpkg.com/furigana-browser/umd/furigana.min.js"></script>
+</head>
+
+<body>
+  <div id="furiganaContainer">
+    <ruby>漢字<rt>かんじ</rt></ruby>
+    <ruby>平和<rt>へいわ</rt></ruby>
+    <ruby>堂<rt>どう</rt></ruby>
+  </div>
+  <h1>Akses Masuk</h1>
+
+  <div id="loginForm">
+    <input type="text" id="username" placeholder="Username">
+    <input type="password" id="password" placeholder="Password">
+    <button id="loginButton">Masuk</button>
+  </div>
+
+  <div id="adminPage" style="display: none;">
+    <h2>Selamat datang, Admin!</h2>
+    <!-- Konten halaman admin -->
+  </div>
+
+  <div id="userPage" style="display: none;">
+    <h2>Selamat datang, Pengguna!</h2>
+    <!-- Konten halaman pengguna -->
+  </div>
+
+  <script>
+    $(document).ready(function () {
+      $("#loginButton").click(function () {
+        var username = $("#username").val();
+        var password = $("#password").val();
+
+        // Cek kredensial pengguna
+        if (username === "admin" && password === "admin") {
+          // Jika pengguna adalah admin
+          $("#loginForm").hide();
+          $("#adminPage").show();
+        } else if (username === "user" && password === "user") {
+          // Jika pengguna adalah pengguna biasa
+          $("#loginForm").hide();
+          $("#userPage").show();
+        } else {
+          alert("Kredensial tidak valid. Silakan coba lagi.");
+        }
+      });
+    });
+  </script>
+  <script>
+    window.onload = function () {
+      var furiganaContainer = document.getElementById("furiganaContainer");
+      Furigana.render(furiganaContainer);
+    };
+  </script>
+</body>
+
+</html>
